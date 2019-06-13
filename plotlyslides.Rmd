@@ -1,0 +1,25 @@
+---
+title: "Html Presentation"
+author: "Paras"
+date: "12 June 2019"
+output: ioslides_presentation
+---
+
+## Diamonds dataset
+We are going to build a plot using plotly for Price vs Carat and then compare how it varies with diamond cuts. 
+```{r, cache= TRUE}
+suppressPackageStartupMessages(library(ggplot2))
+set.seed(1345)
+data("diamonds")
+d <- diamonds[sample(nrow(diamonds), 500), ]
+head(d)
+```
+
+***
+Slide with Plot
+```{r plot, warning=FALSE}
+suppressPackageStartupMessages(library(plotly))
+p <- plot_ly(d, x=~carat, y=~price, mode="markers", color=as.factor(d$cut))
+add_trace(p, type = "scatter")
+```
+
